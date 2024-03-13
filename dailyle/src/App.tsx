@@ -6,6 +6,9 @@ function App() {
   const iFrame = useRef<HTMLIFrameElement>(null);
   const [text, setText] = useState("");
 
+  /**
+   * Handles the click event and fetches data from the server.
+   */
   const handleClick = async () => {
     try {
       const response = await fetch('http://localhost:3001/scrape');
