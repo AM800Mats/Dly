@@ -6,20 +6,14 @@ function App() {
   const iFrame = useRef<HTMLIFrameElement>(null);
   const [text, setText] = useState("");
 
-  const handleClick = () => {
-    var divElement = iFrame.current
-      ? iFrame.current.querySelector("text-green-600")
-      : null;
-    if (divElement !== null) {
-      if (divElement.textContent !== null) {
-        setText(divElement.textContent);
-      }
-    } else {
-      if (iFrame === null) {
-        setText("iFrame null");
-      } else {
-        setText("Element not found");
-      }
+  const handleClick = async () => {
+    try {
+      const response = await fetch('http://localhost:3001/scrape');
+      const text = await response.text();
+      setText('Text: ' + text);
+    } catch (error) {
+      console.error('Error:', error);
+      setText('Error occurred while fetching data');
     }
   };
 
