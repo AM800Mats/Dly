@@ -79,7 +79,6 @@ function App() {
             <option value="Unzoomed">Unzoomed</option>
           </select>
         </div>
-        <Test />
       </body>
     </div>
   );
