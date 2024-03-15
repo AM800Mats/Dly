@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import "./App.css";
-import Test from "./test.tsx";
+import Button from "./Button.tsx";
 
 function App() {
   const iFrame = useRef<HTMLIFrameElement>(null);
@@ -56,6 +56,7 @@ function App() {
     <div className="App">
       <body className="background">
         <h1>Dailyle</h1>
+        <Button></Button>
         <p>{text}</p>
         <iframe
           ref={iFrame}
