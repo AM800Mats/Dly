@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "Dly Chrome Extension",
+  "description": "Chrome extension to fetch scores for Dly website",
+  "version": "1.0",
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}
