@@ -5,5 +5,11 @@
   "version": "1.0",
   "action": {
     "default_popup": "popup.html"
-  }
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://www.example.com/*", "https://www.example.com/*"],
+      "js": ["contentScript.js"]
+    }
+  ]
 }
