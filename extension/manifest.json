@@ -3,13 +3,18 @@
   "name": "Dly Chrome Extension",
   "description": "Chrome extension to fetch scores for Dly website",
   "version": "1.0",
+  "permissions": ["tabs", "scripting"],
+  "host_permissions": ["https://www.foodguessr.com/*", "https://www.costcodle.com/*"],
   "action": {
     "default_popup": "popup.html"
   },
-  "content_scripts": [
+  "background": {
+    "service_worker": "background.js"
+  },
+  "web_accessible_resources": [
     {
-      "matches": ["http://www.example.com/*", "https://www.example.com/*"],
-      "js": ["contentScript.js"]
+      "resources": ["Costco.js", "Food.js"],
+      "matches": ["<all_urls>"]
     }
   ]
 }
