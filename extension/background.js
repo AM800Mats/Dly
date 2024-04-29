@@ -82,8 +82,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         target: { tabId: tab.id },
         func: getMapgameScore
       });
+      break;
     default:
-      console.log('No matching scripts for this URL');
+      console.log('No matching scripts to get score for this URL: ' + tab.url);
     }
   });
 });
