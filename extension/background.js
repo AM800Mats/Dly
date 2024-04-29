@@ -13,17 +13,38 @@ function getCostcoScore() {
   }
 }
 
-  function getFoodguessrScore() {
-    let scoreDiv = document.querySelector('.select-none.text-black');
-    let clonedScoreDiv = scoreDiv.cloneNode(true);
-    let childElements = clonedScoreDiv.querySelectorAll('*');
-    for (let i = 0; i < childElements.length; i++) {
-      childElements[i].parentNode.removeChild(childElements[i]);
-    }
-    let score = clonedScoreDiv.textContent;
-    console.log('Sending message to popup.js');
-    chrome.runtime.sendMessage({ score: score });
+function getFoodguessrScore() {
+  let scoreDiv = document.querySelector('.select-none.text-black');
+  let clonedScoreDiv = scoreDiv.cloneNode(true);
+  let childElements = clonedScoreDiv.querySelectorAll('*');
+  for (let i = 0; i < childElements.length; i++) {
+    childElements[i].parentNode.removeChild(childElements[i]);
   }
+  let score = clonedScoreDiv.textContent;
+  console.log('Sending message to popup.js');
+  chrome.runtime.sendMessage({ score: score });
+}
+
+function getGlobleScore() {
+  let scoreElement = document.querySelector('[data-cy="today\'s-guesses"]');
+  if (!scoreElement) {
+    console.log('No score element found');
+    return;
+  }
+  let score = scoreElement.textContent;
+  console.log('Sending message to popup.js');
+  chrome.runtime.sendMessage({ score: score }); 
+}
+
+function getMapgameScore() {
+  let scoreElement = document.getElementsByClassName('tada')[0];
+  if (!scoreElement) {
+    console.log('No score element found');
+    return;
+  }
+  score = scoreElement.textContent;
+  chrome.runtime.sendMessage({ score: score });
+}
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action !== 'getScore') {
@@ -50,8 +71,19 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         func: getFoodguessrScore
       });
       break;
-      default:
-        console.log('No matching scripts for this URL');
+    case tab.url.includes("globle-game.com/game"):
+      chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        func: getGlobleScore
+      });
+      break;
+    case tab.url.includes("mapgame.net"):
+      chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        func: getMapgameScore
+      });
+    default:
+      console.log('No matching scripts for this URL');
     }
   });
 });
