@@ -13,15 +13,22 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
           });
           break;
         case tab.url.includes("foodguessr.com/final-results"):
-            chrome.scripting.executeScript({
-                target: { tabId: tab.id },
-                function: function() {
-                  let scoreDiv = document.querySelector('.select-none.text-black');
-                  let score = scoreDiv.textContent;
-                  chrome.runtime.sendMessage({score: score});
+          chrome.scripting.executeScript({
+            target: { tabId: tab.id },
+            function: function() {
+                let scoreDiv = document.querySelector('.select-none.text-black');
+                let clonedScoreDiv = scoreDiv.cloneNode(true);
+                let childElements = clonedScoreDiv.querySelectorAll('*');
+                for (let i = 0; i < childElements.length; i++) {
+                    childElements[i].parentNode.removeChild(childElements[i]);
                 }
-              });
-            break;
+                let score = clonedScoreDiv.textContent;
+                console.log(score);
+                console.log('Sending message to background.js');
+                chrome.runtime.sendMessage({score: score});
+            }
+          });
+          break;
         default:
           console.log('No matching scripts for this URL');
       }
