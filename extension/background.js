@@ -56,10 +56,16 @@ function getTimeScore() {
   chrome.runtime.sendMessage({ score: score });
 }
 
+
+
+
+
+// Listen for messages from popup.js
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action !== 'getScore') {
       return;
   }
+  // Get the active tab	
   chrome.tabs.query({active: true}, function(tabs) {
     if (tabs.length === 0) {
       console.log('No active tabs');
@@ -68,6 +74,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     let tab = tabs[0]; // the current tab
 
     //switch cases for each url of supported games
+    //TODO: Add more games & check for edge cases & if user is on actual daily game page results page
     switch (true) {
     case tab.url.includes("costcodle.com"):
       chrome.scripting.executeScript({
