@@ -75,8 +75,27 @@ function getTimeScore() {
   chrome.runtime.sendMessage({ score: score });
 }
 
+function getTravleScore() {
+  resultsElement = document.getElementById('resultsModalText');
+  if (!resultsElement) {
+    console.log('No score element found');
+    return;
+  }
 
-
+  // If the user failed to guess correctly
+  if (resultsElement.firstChild.textContent.includes("So close.")) {
+    let failedScore = -1;
+    chrome.runtime.sendMessage({ score: failedScore });
+  } 
+  // If the user guessed correctly
+  else if (resultsElement.firstChild.textContent.includes("Success!")) {
+    let guessElement = resultsElement.firstChild.nextSibling.textContent;
+    let numGuesses = guessElement.split(' ')[0];
+    let perfGuesses = resultsElement.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.textContent.split(' ')[0];
+    let score = numGuesses - perfGuesses;
+    chrome.runtime.sendMessage({ score: score });
+  }
+}
 
 
 // Listen for messages from popup.js
@@ -129,6 +148,12 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       chrome.scripting.executeScript({
         target: { tabId: tab.id },
         func: getWorldleScore
+      });
+      break;
+    case tab.url === "https://travle.earth/":
+      chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        func: getTravleScore
       });
       break;
     default:

@@ -4,7 +4,7 @@
   "description": "Chrome extension to fetch scores for Dly website",
   "version": "1.0",
   "permissions": ["tabs", "scripting"],
-  "host_permissions": ["https://www.foodguessr.com/*", "https://costcodle.com/*", "https://globle-game.com/game", "https://mapgame.net/*", "https://worldle.teuteuf.fr/", "https://timeguessr.com/*"],
+  "host_permissions": ["https://www.foodguessr.com/*", "https://costcodle.com/*", "https://globle-game.com/game", "https://mapgame.net/*", "https://worldle.teuteuf.fr/", "https://timeguessr.com/*", "https://travle.earth/"],
   "action": {
     "default_popup": "popup.html"
   },
