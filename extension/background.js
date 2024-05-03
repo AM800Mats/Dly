@@ -65,10 +65,26 @@ function getWorldleScore() {
   chrome.runtime.sendMessage({ score: score });
 }
 
+function getTimeScore() {
+  let scoreElement = document.getElementById('totalText');
+  if (!scoreElement) {
+    console.log('No score element found');
+    return;
+  }
+  score = scoreElement.textContent;
+  chrome.runtime.sendMessage({ score: score });
+}
+
+
+
+
+
+// Listen for messages from popup.js
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action !== 'getScore') {
       return;
   }
+  // Get the active tab	
   chrome.tabs.query({active: true}, function(tabs) {
     if (tabs.length === 0) {
       console.log('No active tabs');
@@ -77,6 +93,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     let tab = tabs[0]; // the current tab
 
     //switch cases for each url of supported games
+    //TODO: Add more games & check for edge cases & if user is on actual daily game page results page
     switch (true) {
     case tab.url.includes("costcodle.com"):
       chrome.scripting.executeScript({
@@ -100,6 +117,12 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       chrome.scripting.executeScript({
         target: { tabId: tab.id },
         func: getMapgameScore
+      });
+      break;
+    case tab.url.includes("timeguessr.com/finalscoredaily"):
+      chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        func: getTimeScore
       });
       break;
     case tab.url.includes("worldle.teuteuf.fr"):
