@@ -1,3 +1,7 @@
+//TODO: Add more games (OEC TRADLE, GEOCIRCS, UNZOOMED)
+//TODO: check for edge cases & if user is on actual daily game page results page
+//TODO: Convert scores to percentages here on server side? 
+
 
 function getCostcoScore() {
   let checkElement = document.getElementsByClassName('guess-direction-container animate__flipInX guess-win')[0];
@@ -13,10 +17,12 @@ function getCostcoScore() {
   }
 }
 
+//TODO: Remove commas from score
 function getFoodguessrScore() {
   let checkElement = document.getElementsByClassName('rounded-full mt-4 h-14  w-full px-4 py-2 font-bold text-white hover:bg-slate-700 bg-slate-400')[0];
   if (!checkElement) {
     console.log('No score element found');
+    chrome.runtime.sendMessage({ invalid: true});
     return;
   }
   let scoreDiv = document.querySelector('.select-none.text-black');
@@ -34,6 +40,7 @@ function getGlobleScore() {
   let scoreElement = document.querySelector('[data-cy="today\'s-guesses"]');
   if (!scoreElement) {
     console.log('No score element found');
+    chrome.runtime.sendMessage({ invalid: true});
     return;
   }
   let score = scoreElement.textContent;
@@ -41,10 +48,12 @@ function getGlobleScore() {
   chrome.runtime.sendMessage({ score: score }); 
 }
 
+//TODO: Remove commas from score
 function getMapgameScore() {
   let scoreElement = document.getElementsByClassName('tada')[0];
   if (!scoreElement) {
     console.log('No score element found');
+    chrome.runtime.sendMessage({ invalid: true});
     return;
   }
   score = scoreElement.textContent;
@@ -55,6 +64,7 @@ function getWorldleScore() {
   let Element = document.getElementsByClassName('flex items-center justify-center border-2 h-8 col-span-1 animate-reveal animate-pop rounded')[0];
   if (!Element) {
     console.log('No score element found');
+    chrome.runtime.sendMessage({ invalid: true});
     return;
   }
   let siblingCount = 1;
@@ -70,10 +80,12 @@ function getWorldleScore() {
   chrome.runtime.sendMessage({ score: score });
 }
 
+//TODO: Remove commas from score
 function getTimeScore() {
   let scoreElement = document.getElementById('totalText');
   if (!scoreElement) {
     console.log('No score element found');
+    chrome.runtime.sendMessage({ invalid: true});
     return;
   }
   score = scoreElement.textContent;
@@ -84,6 +96,7 @@ function getTravleScore() {
   resultsElement = document.getElementById('resultsModalText');
   if (!resultsElement) {
     console.log('No score element found');
+    chrome.runtime.sendMessage({ invalid: true});
     return;
   }
 
@@ -97,7 +110,7 @@ function getTravleScore() {
     let guessElement = resultsElement.firstChild.nextSibling.textContent;
     let numGuesses = guessElement.split(' ')[0];
     let perfGuesses = resultsElement.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.textContent.split(' ')[0];
-    let score = numGuesses - perfGuesses;
+    let score = (numGuesses - perfGuesses).toString();
     chrome.runtime.sendMessage({ score: score });
   }
 }
@@ -117,7 +130,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     let tab = tabs[0]; // the current tab
 
     //switch cases for each url of supported games
-    //TODO: Add more games & check for edge cases & if user is on actual daily game page results page
     switch (true) {
     case tab.url.includes("costcodle.com"):
       chrome.scripting.executeScript({

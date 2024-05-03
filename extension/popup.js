@@ -25,8 +25,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
     let listener = function(request, sender, sendResponse) {
       if (request.score) {
         a++;
-        console.log('received score' + request.score + sender + a);
+        console.log('received score: ' + request.score + ' from:' + sender + a);
         document.getElementById("score").textContent = request.score;
+        chrome.runtime.onMessage.removeListener(listener);
+      }
+      else if (request.invalid) {
+        console.log('invalid score');
+        document.getElementById("score").textContent = 'Couldn\'t get score, make sure you are on the correct page.';
         chrome.runtime.onMessage.removeListener(listener);
       }
     };
