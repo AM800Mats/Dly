@@ -14,6 +14,11 @@ function getCostcoScore() {
 }
 
 function getFoodguessrScore() {
+  let checkElement = document.getElementsByClassName('rounded-full mt-4 h-14  w-full px-4 py-2 font-bold text-white hover:bg-slate-700 bg-slate-400')[0];
+  if (!checkElement) {
+    console.log('No score element found');
+    return;
+  }
   let scoreDiv = document.querySelector('.select-none.text-black');
   let clonedScoreDiv = scoreDiv.cloneNode(true);
   let childElements = clonedScoreDiv.querySelectorAll('*');
