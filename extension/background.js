@@ -46,6 +46,25 @@ function getMapgameScore() {
   chrome.runtime.sendMessage({ score: score });
 }
 
+function getWorldleScore() {
+  let Element = document.getElementsByClassName('flex items-center justify-center border-2 h-8 col-span-1 animate-reveal animate-pop rounded')[0];
+  if (!Element) {
+    console.log('No score element found');
+    return;
+  }
+  let siblingCount = 1;
+  let sibling = Element.parentNode.firstChild;
+  while (sibling) {
+      if (sibling.nodeType === 1 && sibling !== Element) {
+          siblingCount++;
+      }
+      sibling = sibling.nextSibling;
+  }
+  let score = siblingCount/4;
+
+  chrome.runtime.sendMessage({ score: score });
+}
+
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action !== 'getScore') {
       return;
@@ -81,6 +100,12 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       chrome.scripting.executeScript({
         target: { tabId: tab.id },
         func: getMapgameScore
+      });
+      break;
+    case tab.url.includes("worldle.teuteuf.fr"):
+      chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        func: getWorldleScore
       });
       break;
     default:
