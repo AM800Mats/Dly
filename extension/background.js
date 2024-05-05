@@ -2,6 +2,17 @@
 //TODO: check for edge cases & if user is on actual daily game page results page
 //TODO: Convert scores to percentages here on server side? 
 
+function convScore(gameScore, maxScore, reversed) {
+  if (gameScore === -1) {
+    gameScore = maxScore + 1;
+  }
+  switch (reversed) {
+    case true:
+      return (maxScore + 1 - gameScore) / ((maxScore + 1)/100);
+    case false:
+      return (gameScore / (maxScore/100));
+  }
+}
 
 function getCostcoScore() {
   let checkElement = document.getElementsByClassName('guess-direction-container animate__flipInX guess-win')[0];
@@ -108,8 +119,26 @@ function getTravleScore() {
   // If the user guessed correctly
   else if (resultsElement.firstChild.textContent.includes("Success!")) {
     let guessElement = resultsElement.firstChild.nextSibling.textContent;
-    let numGuesses = guessElement.split(' ')[0];
-    let perfGuesses = resultsElement.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.textContent.split(' ')[0];
+    let numGuesses = parseInt(guessElement.split(' ')[0]);
+    let perfGuesses = parseInt(resultsElement.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.textContent.split(' ')[0]);
+    let maxGuesses = 0;
+    switch (true) {
+      case perfGuesses === 3:
+        maxGuesses = 4;
+        break;
+      case perfGuesses > 3 && perfGuesses <= 6:
+        maxGuesses = 5;
+        break;
+      case perfGuesses > 6 && perfGuesses <= 9:
+        maxGuesses = 6;
+        break;
+      case perfGuesses > 9 && perfGuesses <= 12:
+        maxGuesses = 7;
+        break;
+      case perfGuesses > 12:
+        maxGuesses = 8;
+        break;
+    }
     let score = (numGuesses - perfGuesses).toString();
     chrome.runtime.sendMessage({ score: score });
   }
