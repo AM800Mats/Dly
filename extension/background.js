@@ -104,8 +104,8 @@ function getTimeScore() {
     chrome.runtime.sendMessage({ invalid: true});
     return;
   }
-  score = parseInt(scoreElement.textContent.replace(/,/g, ''));
-  convScore(score, 15000, false)
+  let score = parseInt(scoreElement.textContent.replace(/,/g, ''));
+  let relScore = convScore(score, 15000, false)
   chrome.runtime.sendMessage({ score: score , relScore: relScore});
 }
 
