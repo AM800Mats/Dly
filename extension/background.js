@@ -1,6 +1,7 @@
 //TODO: Add more games (OEC TRADLE, GEOCIRCS, UNZOOMED)
 //TODO: check for edge cases & if user is on actual daily game page results page
-//TODO: Convert scores to percentages here on server side? 
+//TODO: Convert scores to percentages here 
+//TODO: Check if webpage has been modified? prevent cheating
 
 function convScore(gameScore, maxScore, reversed) {
   if (gameScore === -1) {
@@ -8,7 +9,7 @@ function convScore(gameScore, maxScore, reversed) {
   }
   switch (reversed) {
     case true:
-      return (maxScore + 1 - gameScore) / ((maxScore + 1)/100);
+      return (maxScore + 1 - gameScore) * (100 / maxScore);
     case false:
       return (gameScore / (maxScore/100));
   }
@@ -17,14 +18,15 @@ function convScore(gameScore, maxScore, reversed) {
 function getCostcoScore() {
   let checkElement = document.getElementsByClassName('guess-direction-container animate__flipInX guess-win')[0];
   if (checkElement) {
-    let guessNum = checkElement.parentElement.id;
+    let guessNum = parseInt(checkElement.parentElement.id);
     console.log('Sending message to popup.js:' + guessNum);
-    chrome.runtime.sendMessage({ score: guessNum });
+    let relScore = convScore(guessNum, 6, true);
+    chrome.runtime.sendMessage({ score: guessNum , relScore: relScore});
   }
   else {
-    let guessNum = 'DNF';
+    let guessNum = -1;
     console.log('Sending message to popup.js:' + guessNum);
-    chrome.runtime.sendMessage({ score: guessNum });
+    chrome.runtime.sendMessage({ score: guessNum , relScore: 0.0});
   }
 }
 
@@ -42,9 +44,10 @@ function getFoodguessrScore() {
   for (let i = 0; i < childElements.length; i++) {
     childElements[i].parentNode.removeChild(childElements[i]);
   }
-  let score = clonedScoreDiv.textContent;
+  let score = parseInt(clonedScoreDiv.textContent);
+  let relScore = convScore(score, 15000, false);
   console.log('Sending message to popup.js');
-  chrome.runtime.sendMessage({ score: score });
+  chrome.runtime.sendMessage({ score: score , relScore: relScore});
 }
 
 function getGlobleScore() {
@@ -56,7 +59,8 @@ function getGlobleScore() {
   }
   let score = scoreElement.textContent;
   console.log('Sending message to popup.js');
-  chrome.runtime.sendMessage({ score: score }); 
+  let relScore = convScore(score, 20, true);
+  chrome.runtime.sendMessage({ score: score , relScore: relScore}); 
 }
 
 //TODO: Remove commas from score
@@ -67,8 +71,9 @@ function getMapgameScore() {
     chrome.runtime.sendMessage({ invalid: true});
     return;
   }
-  score = scoreElement.textContent;
-  chrome.runtime.sendMessage({ score: score });
+  let score = parseInt(scoreElement.textContent);
+  let relScore = convScore(score, 100000, false);
+  chrome.runtime.sendMessage({ score: score , relScore: relScore});
 }
 
 function getWorldleScore() {
@@ -87,8 +92,8 @@ function getWorldleScore() {
       sibling = sibling.nextSibling;
   }
   let score = siblingCount/4;
-
-  chrome.runtime.sendMessage({ score: score });
+  let relScore = convScore(score, 6, true);
+  chrome.runtime.sendMessage({ score: score , relScore: relScore});
 }
 
 //TODO: Remove commas from score
@@ -99,8 +104,9 @@ function getTimeScore() {
     chrome.runtime.sendMessage({ invalid: true});
     return;
   }
-  score = scoreElement.textContent;
-  chrome.runtime.sendMessage({ score: score });
+  score = parseInt(scoreElement.textContent.replace(/,/g, ''));
+  convScore(score, 15000, false)
+  chrome.runtime.sendMessage({ score: score , relScore: relScore});
 }
 
 function getTravleScore() {
@@ -114,7 +120,7 @@ function getTravleScore() {
   // If the user failed to guess correctly
   if (resultsElement.firstChild.textContent.includes("So close.")) {
     let failedScore = -1;
-    chrome.runtime.sendMessage({ score: failedScore });
+    chrome.runtime.sendMessage({ score: failedScore , relScore: 0.0});
   } 
   // If the user guessed correctly
   else if (resultsElement.firstChild.textContent.includes("Success!")) {
@@ -140,7 +146,10 @@ function getTravleScore() {
         break;
     }
     let score = (numGuesses - perfGuesses).toString();
-    chrome.runtime.sendMessage({ score: score });
+    //changing score to work with convScore function, since 0 extra guesses case doesn't work with it
+    let workableScore = score + 1;
+    let relScore = convScore(workableScore, maxGuesses, true);
+    chrome.runtime.sendMessage({ score: score , relScore: relScore});
   }
 }
 
