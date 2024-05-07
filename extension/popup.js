@@ -24,9 +24,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
      */
     let listener = function(request, sender, sendResponse) {
       if (request.score) {
-        a++;
-        console.log('received score: ' + request.score + ' from:' + sender + a);
-        document.getElementById("score").textContent = request.score;
+        console.log('received score: ' + request.score + ' from:' + sender);
+        document.getElementById("score").textContent = request.score + ' ' + request.relScore;
         chrome.runtime.onMessage.removeListener(listener);
       }
       else if (request.invalid) {
