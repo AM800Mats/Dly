@@ -16,6 +16,17 @@ function convScore(gameScore, maxScore, reversed) {
 }
 
 function getCostcoScore() {
+  function convScore(gameScore, maxScore, reversed) {
+    if (gameScore === -1) {
+      gameScore = maxScore + 1;
+    }
+    switch (reversed) {
+      case true:
+        return (maxScore + 1 - gameScore) * (100 / maxScore);
+      case false:
+        return (gameScore / (maxScore/100));
+    }
+  }
   let checkElement = document.getElementsByClassName('guess-direction-container animate__flipInX guess-win')[0];
   if (checkElement) {
     let guessNum = parseInt(checkElement.parentElement.id);
@@ -32,6 +43,17 @@ function getCostcoScore() {
 
 //TODO: Remove commas from score
 function getFoodguessrScore() {
+  function convScore(gameScore, maxScore, reversed) {
+    if (gameScore === -1) {
+      gameScore = maxScore + 1;
+    }
+    switch (reversed) {
+      case true:
+        return (maxScore + 1 - gameScore) * (100 / maxScore);
+      case false:
+        return (gameScore / (maxScore/100));
+    }
+  }
   let checkElement = document.getElementsByClassName('rounded-full mt-4 h-14  w-full px-4 py-2 font-bold text-white hover:bg-slate-700 bg-slate-400')[0];
   if (!checkElement) {
     console.log('No score element found');
@@ -51,6 +73,17 @@ function getFoodguessrScore() {
 }
 
 function getGlobleScore() {
+  function convScore(gameScore, maxScore, reversed) {
+    if (gameScore === -1) {
+      gameScore = maxScore + 1;
+    }
+    switch (reversed) {
+      case true:
+        return (maxScore + 1 - gameScore) * (100 / maxScore);
+      case false:
+        return (gameScore / (maxScore/100));
+    }
+  }
   let scoreElement = document.querySelector('[data-cy="today\'s-guesses"]');
   if (!scoreElement) {
     console.log('No score element found');
@@ -65,6 +98,17 @@ function getGlobleScore() {
 
 //TODO: Remove commas from score
 function getMapgameScore() {
+  function convScore(gameScore, maxScore, reversed) {
+    if (gameScore === -1) {
+      gameScore = maxScore + 1;
+    }
+    switch (reversed) {
+      case true:
+        return (maxScore + 1 - gameScore) * (100 / maxScore);
+      case false:
+        return (gameScore / (maxScore/100));
+    }
+  }
   let scoreElement = document.getElementsByClassName('tada')[0];
   if (!scoreElement) {
     console.log('No score element found');
@@ -77,6 +121,17 @@ function getMapgameScore() {
 }
 
 function getWorldleScore() {
+  function convScore(gameScore, maxScore, reversed) {
+    if (gameScore === -1) {
+      gameScore = maxScore + 1;
+    }
+    switch (reversed) {
+      case true:
+        return (maxScore + 1 - gameScore) * (100 / maxScore);
+      case false:
+        return (gameScore / (maxScore/100));
+    }
+  }
   let Element = document.getElementsByClassName('flex items-center justify-center border-2 h-8 col-span-1 animate-reveal animate-pop rounded')[0];
   if (!Element) {
     console.log('No score element found');
@@ -98,6 +153,17 @@ function getWorldleScore() {
 
 //TODO: Remove commas from score
 function getTimeScore() {
+  function convScore(gameScore, maxScore, reversed) {
+  if (gameScore === -1) {
+    gameScore = maxScore + 1;
+  }
+  switch (reversed) {
+    case true:
+      return (maxScore + 1 - gameScore) * (100 / maxScore);
+    case false:
+      return (gameScore / (maxScore/100));
+  }
+}
   let scoreElement = document.getElementById('totalText');
   if (!scoreElement) {
     console.log('No score element found');
@@ -109,7 +175,19 @@ function getTimeScore() {
   chrome.runtime.sendMessage({ score: score , relScore: relScore});
 }
 
+//TOFIX: Fix relScore being wrong
 function getTravleScore() {
+  function convScore(gameScore, maxScore, reversed) {
+    if (gameScore === -1) {
+      gameScore = maxScore + 1;
+    }
+    switch (reversed) {
+      case true:
+        return (maxScore + 1 - gameScore) * (100 / maxScore);
+      case false:
+        return (gameScore / (maxScore/100));
+    }
+  }
   resultsElement = document.getElementById('resultsModalText');
   if (!resultsElement) {
     console.log('No score element found');
