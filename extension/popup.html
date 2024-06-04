@@ -3,19 +3,48 @@
 <head>
   <style>
     body {
-        width: 100px;
-        height: 50px;
+        width: 150px;
+        height: 150px;
     }
+    h1{
+      display: block;
+      font-size: 48px;
+      opacity: 0.75;
+      text-align: center;
+      color: lightseagreen;
+    }
+    button {
+      background-color: #13aa52;
+      border: 1px solid #13aa52;
+      border-radius: 4px;
+      box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
+      box-sizing: border-box;
+      color: #fff;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 400;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      text-align: center;
+      transform: translateY(0);
+      transition: transform 150ms, box-shadow 150ms;
+      touch-action: manipulation;
+      width:100%;
+    }
+
+    .button:hover {
+      box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
+      transform: translateY(-2px);
+    }
+
 </style>
   <title>Popup</title>
   <script src="popup.js"></script>
 </head>
 <body>
-  <h1>test</h1>
-  <div>
-    <button id="getScoreFromPage">GET SCORE</button>
-    <h3>Detected score:</h3>
-    <div id="score"></div>
-  </div>
+  <h1>Daily</h1>
+  <div><button class= "button" id="getScoreFromPage">GET SCORE</button></div>   
+  <h3>Detected score:</h3>
+  <div id="score"></div>
 </body>
 </html>
