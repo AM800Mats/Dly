@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+ <html> 
+    <head> 
+        <title>Login Page</title> 
+        <style> 
+    body { 
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+        height: 100vh; 
+        margin: 0; 
+        padding: 0;
+        background-color: #f0f0f0; 
+        font-family: Arial, sans-serif; }
+        .container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+    }
+    .container{
+        height: 100%;
+    }
+    .globe {
+        width: 30%;
+        margin: 0px;
+        float: left;
+        background-image: url('globe.png');
+    }
+
+    .globe img {
+        width: 100%;
+    }
+
+    .login {
+        width: 40%;
+        text-align: center;
+    }
+
+    .login h2 {
+        margin-bottom: 20px;
+    }
+
+    .login form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .login label {
+        margin-bottom: 5px;
+    }
+
+    .login input[type="text"],
+    .login input[type="password"] {
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .login input[type="submit"] {
+        padding: 8px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .login input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+
+    .create-account {
+        margin-top: 10px;
+        text-align: center;
+        font-size: 0.9em;
+        color: #333;
+        text-decoration: none;
+    }
+
+    .create-account:hover {
+        text-decoration: underline;
+    }
+</style>
+</head> 
+<body> 
+    <div class="container"> 
+        <div class="globe"> 
+            <!--<img src="globe.png" alt="Globe"> -->
+         </div> 
+            <div class="login"> 
+                <h2>Login</h2> 
+                <form> 
+                    <label for="username">Username:</label> 
+                    <input type="text" id="username" name="username">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password">
+                    <input type="submit" value="Login">
+                </form>
+                <a class="create-account" href="#">Create an account</a>
+            </div>
+        </div> 
+    </body> 
+</html>
