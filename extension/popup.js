@@ -1,4 +1,3 @@
-let a = 0;
 /**
  * Event listener for the DOMContentLoaded event.
  * @param {Event} event - The DOMContentLoaded event object.
@@ -7,8 +6,46 @@ document.addEventListener('DOMContentLoaded', (event) => {
   /**
    * Click event listener for the start button.
    */
-  let startButton = document.getElementById('getScoreFromPage');
-  startButton.addEventListener('click', () => {
+  let getScoreButton = document.getElementById('getScoreFromPage');
+  let sendScoreButton = document.getElementById('sendScoreToServer');
+
+  sendScoreButton.addEventListener('click', () => {
+
+    chrome.storage.local.get(["savedScore", "savedRelScore", "savedGameID"], function(result) {
+
+      if (result.savedScore && result.savedRelScore && result.savedGameID) {
+
+        console.log("Sending score to server:", result.savedScore, result.savedRelScore, result.savedGameID);
+        
+        let username = 'anonymous'; // Placeholder for username
+
+        fetch('http://localhost:5000/scores', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            user: username,
+            game: result.savedGameID,
+            absolute_score: result.savedScore,
+            relative_score: result.savedRelScore,
+          }),
+        })
+        .then(response => response.json())
+        .then(data => console.log('Success:', data))
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+
+      }
+
+      else {
+        console.log("No score saved, try getting the score first.");
+      }
+    });
+  });
+
+  getScoreButton.addEventListener('click', () => {
     /**
      * Query the active tab and send a message to the background script to get the score.
      */
@@ -24,8 +61,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
      */
     let listener = function(request, sender, sendResponse) {
       if (request.score) {
-        console.log('received score: ' + request.score + ' from:' + sender);
-        document.getElementById("score").textContent = request.score + ' ' + request.relScore;
+        request.relScore = parseFloat(request.relScore).toFixed(1); // round relScore to 1 decimal place
+        console.log('received score, relscore: ' + request.score + ', ' + request.relScore);
+
+        document.getElementById("score").textContent = 'score: ' + request.score + ', relative score: ' + request.relScore + ', from game:  ' + request.gameID;
+
+        chrome.storage.local.set({ "savedScore": request.score, "savedRelScore": request.relScore, "savedGameID": request.gameID }, function() {
+          console.log("Score saved temporarily.");
+        });
+
         chrome.runtime.onMessage.removeListener(listener);
       }
       else if (request.invalid) {
@@ -35,7 +79,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
       }
     };
     chrome.runtime.onMessage.addListener(listener);
-    
   });
 });
 
