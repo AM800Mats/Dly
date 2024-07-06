@@ -372,3 +372,14 @@ body {
 .autocomplete-results li:hover {
   background-color: #f0f0f0;
 }
+
+.score-search{
+  height: 100%;
+  overflow: hidden;
+}
+
+.score-comparisson{
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  
+}
