@@ -1,6 +1,7 @@
 **Checklist:**
 
-- [ ] Extension fertig machen
+- [ ] Extension visuals fertig
+- [ ] README chrome extension fertig
 - [ ] Mats doku
 - [x] chart fixen
 - [ ] Video
