@@ -1,7 +1,27 @@
 //login api call
+// Updated login function in extension/login.js
 async function login(username, password) {
-    //API call logic
-    return { accessToken: 'your_access_token' };
+    const loginUrl = 'http://localhost:3500/auth'; // Adjust if your API endpoint differs
+    try {
+        const response = await fetch(loginUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, password }),
+            credentials: 'include', // Include cookies for CORS requests
+        });
+
+        if (!response.ok) {
+            throw new Error('Login failed');
+        }
+
+        const { accessToken } = await response.json();
+        return { accessToken };
+    } catch (error) {
+        console.error('Error during login:', error);
+        throw error;
+    }
 }
 
 // Function to handle login within the extension

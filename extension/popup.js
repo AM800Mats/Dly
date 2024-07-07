@@ -3,15 +3,18 @@
  * @param {Event} event - The DOMContentLoaded event object.
  */
 document.addEventListener('DOMContentLoaded', (event) => {  
-  /**
-   * Click event listener for the start button.
-   */
   let getScoreButton = document.getElementById('getScoreFromPage');
   let sendScoreButton = document.getElementById('sendScoreToServer');
+  let loginPageButton = document.getElementById('loginPageButton');
 
-  document.getElementById('loginPageButton').addEventListener('click', function() {
-    chrome.tabs.create({url: 'login.html'});
-  });
+  // Check if the loginPageButton already has the flag indicating the listener is added
+  if (!loginPageButton.hasAttribute('data-listener-added')) {
+    loginPageButton.addEventListener('click', function() {
+      chrome.tabs.create({url: 'login.html'});
+    });
+    // Set a flag to indicate the listener has been added
+    loginPageButton.setAttribute('data-listener-added', 'true');
+  }
 
 
   sendScoreButton.addEventListener('click', () => {
