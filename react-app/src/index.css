@@ -27,6 +27,7 @@ body {
 }
 .DashboardBody{
   padding: 15px;
+  margin-top: 105px;
 }
 
 
@@ -53,7 +54,6 @@ body {
 }
 
 .welcome{
-  margin-top: 105;
   padding: 0px;
 }
 
