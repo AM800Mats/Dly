@@ -134,9 +134,9 @@ const UserScoreSearch = () => {
                 <div className='score-comparisson'>
                     {selectedUser && (
                         <div>
-                            <h2>{selectedUser}'s Today's Scores</h2>
+                            <h2>{selectedUser}'s Scores Today</h2>
                             <div className="average-score">
-                                <h2>Today's Average Relative Score</h2>
+                                <h2>Their Average Performance Today</h2>
                                 <div className="speedometer">
                                     <svg viewBox="0 -5 200 100" className="speedometer-svg">
                                         <path
