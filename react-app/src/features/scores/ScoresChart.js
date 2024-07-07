@@ -85,11 +85,11 @@ const ScoreChart = () => {
     }
 
     return (
-        <div className='data-box large'>
+        <div className='data-box large bottom'>
             <div className='score-chart'>
                 <div>
                     <label htmlFor="game">Select Game: </label>
-                    <select id="game" value={selectedGame} onChange={handleGameChange}>
+                    <select className = "select" id="game" value={selectedGame} onChange={handleGameChange}>
                         <option value="">Select a game</option>
                         {gameOptions.map(game => (
                             <option key={game} value={game}>{game}</option>
@@ -97,7 +97,9 @@ const ScoreChart = () => {
                     </select>
                 </div>
                 {filteredScores.length > 0 ? (
-                    <Line data={data} options={options} />
+                    <div className = "ScoreGraphs">
+                        <Line data={data} options={options} />
+                    </div>
                 ) : (
                     <p>No scores available for the selected game.</p>
                 )}

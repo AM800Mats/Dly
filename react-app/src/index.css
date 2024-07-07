@@ -107,6 +107,26 @@ body {
   margin-left: 10px;
 }
 
+.userSearch1{
+  font-size: large;
+}
+
+.scoreSearchBox{
+  padding: 15px;
+  margin: 10px;
+  width: 75%;
+  color: #696969;
+  vertical-align: middle;
+  border: 1px solid var(--bg-secondary);
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.scoreSearchBox:hover{
+  border-color: #aaa;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  transition: 1s;
+}
+
 /* Table Styles */
 .table {
   background-color: var(--bg-secondary);
@@ -133,11 +153,12 @@ body {
   border-radius: 10px;
   padding: 1.5rem;
   margin: 1rem 0;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
 }
 
 .score-chart {
   max-width: 800px;
+  max-height: 400px;
   margin: 1rem auto;
 }
 
@@ -214,12 +235,16 @@ body {
 
 .data-box.large {
   flex: 2;
-  margin-right: 20px;
 }
 
 .data-box.large.top {
-  flex: 1;
+  flex: 2;
   margin-right: 20px;
+}
+
+.data-box.large.bottom {
+  flex: 1;
+  margin-left: 20px;
 }
 
 .data-box.small {
@@ -248,6 +273,25 @@ body {
   .public__forms {
     width: 100%;
   }
+}
+
+select {
+  padding: 10px;
+  width: 270px;
+  color: #696969;
+  vertical-align: middle;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  -webkit-appearance: none; /* remove default select arrow */
+  -moz-appearance: none;
+  appearance: none;
+}
+
+select:hover {
+  border-color: #aaa;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  transition: 0,5s;
 }
 
 /* Animations */
@@ -337,24 +381,29 @@ body {
 .average-score {
   text-align: center;
   max-width: 300px;
+  max-height: max-content;
   margin: 0 auto;
+  box-shadow: none;
 }
 
 .speedometer {
-  margin-top: 20px;
+  
   width: 100%;
-  height: 150px;
+  height: 100%;
   position: relative;
+  background-color: var(--bg-secondary);
+  border-radius: 10px;
+  margin-top: 10px;
 }
 
 .speedometer-svg {
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 
 .score-value {
   position: absolute;
-  bottom: 10px;
+  bottom: -15px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 24px;
@@ -394,4 +443,8 @@ body {
   display: grid;
   grid-template-columns: 2fr 1fr;
   
+}
+.ScoreGraphs{
+  max-height: 300px;
+  left: 50%;
 }

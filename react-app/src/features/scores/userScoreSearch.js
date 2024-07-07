@@ -109,11 +109,12 @@ const UserScoreSearch = () => {
     }
 
     return (
-        <div className='data-box large'>
+        <div className='data-box large top'>
             <div className='score-search'>
                 <div>
-                    <label htmlFor="userSearch">Search User: </label>
+                    <label htmlFor="userSearch" className="userSearch1">Search User: </label>
                     <input
+                        className = "scoreSearchBox"
                         type="text"
                         id="userSearch"
                         value={searchQuery}
@@ -137,7 +138,7 @@ const UserScoreSearch = () => {
                             <div className="average-score">
                                 <h2>Today's Average Relative Score</h2>
                                 <div className="speedometer">
-                                    <svg viewBox="0 0 200 100" className="speedometer-svg">
+                                    <svg viewBox="0 -5 200 100" className="speedometer-svg">
                                         <path
                                             d="M20 80 A 60 60 0 0 1 180 80"
                                             fill="none"
@@ -162,8 +163,8 @@ const UserScoreSearch = () => {
                                             transform={`rotate(${rotation}, 100, 80)`}
                                         />
                                         <circle cx="100" cy="80" r="5" fill="#333" />
-                                        <text x="20" y="95" fontSize="10">0</text>
-                                        <text x="180" y="95" fontSize="10">100</text>
+                                        <text x="15" y="95" fontSize="10">0</text>
+                                        <text x="175" y="95" fontSize="10">100</text>
                                     </svg>
                                     <div className="score-value">{totalDailyAverage}</div>
                                 </div>
