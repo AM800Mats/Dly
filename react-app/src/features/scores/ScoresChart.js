@@ -50,13 +50,6 @@ const ScoreChart = () => {
                 fill: false,
                 backgroundColor: 'rgba(75,192,192,0.2)',
                 borderColor: 'rgba(75,192,192,1)',
-            },
-            {
-                label: 'Relative Score',
-                data: filteredScores.map(score => score.relative_score),
-                fill: false,
-                backgroundColor: 'rgba(153,102,255,0.2)',
-                borderColor: 'rgba(153,102,255,1)',
             }
         ],
     };
