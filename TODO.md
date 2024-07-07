@@ -1,5 +1,9 @@
 **Checklist:**
 
-- [ ] 
-- [ ] Item 2
-- [ ] Item 3
+- [ ] Extension fertig machen
+- [ ] Mats doku
+- [ ] chart fixen
+- [ ] Video
+- [ ] Display userId
+- [ ] github aufräumen
+      
