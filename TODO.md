@@ -2,8 +2,8 @@
 
 - [ ] Extension fertig machen
 - [ ] Mats doku
-- [ ] chart fixen
+- [x] chart fixen
 - [ ] Video
-- [ ] Display userId
+- [x] Display userId
 - [ ] github aufräumen
       
