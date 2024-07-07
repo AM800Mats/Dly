@@ -9,6 +9,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
   let getScoreButton = document.getElementById('getScoreFromPage');
   let sendScoreButton = document.getElementById('sendScoreToServer');
 
+  document.getElementById('loginPageButton').addEventListener('click', function() {
+    chrome.tabs.create({url: 'login.html'});
+  });
+
+
   sendScoreButton.addEventListener('click', () => {
 
     chrome.storage.local.get(["savedScore", "savedRelScore", "savedGameID"], function(result) {
