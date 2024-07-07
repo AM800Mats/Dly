@@ -122,7 +122,7 @@ function getMapgameScore() {
     chrome.runtime.sendMessage({ invalid: true});
     return;
   }
-  let score = parseInt(scoreElement.textContent);
+  let score = parseInt(scoreElement.textContent.replace(/,/g, ''));
   let relScore = convScore(score, 100000, false);
   chrome.runtime.sendMessage({ score: score , relScore: relScore, gameID: 'Mapgame'});
 }
