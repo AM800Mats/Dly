@@ -1,7 +1,9 @@
+import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faHouse } from "@fortawesome/free-solid-svg-icons"
 import { useNavigate, useLocation } from 'react-router-dom'
 import useAuth from "../hooks/useAuth"
+import {selectUserIdByUsername} from "../features/users/usersApiSlice"
 
 const DashFooter = () => {
 
@@ -9,6 +11,8 @@ const DashFooter = () => {
 
     const navigate = useNavigate()
     const { pathname } = useLocation()
+
+    const userId = useSelector(state => selectUserIdByUsername(state, username));
 
     const onGoHomeClicked = () => navigate('/dash')
 
@@ -28,7 +32,7 @@ const DashFooter = () => {
     const content = (
         <footer className="dash-footer">
             {goHomeButton}
-            <p>Current User: {username}</p>
+            <p>Current User: {userId}</p>
         </footer>
     )
     return content
