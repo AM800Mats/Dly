@@ -11,7 +11,9 @@ const Dashboard = () => {
 
     return (
         <section className="welcome">
-            <h1>Welcome!</h1>
+            <div className = "welcome1">
+                <h1>Welcome!</h1>
+            </div>
             <div className="dash-grid">
                 <div className="dash-row">
                     <UserScoreSearch/>

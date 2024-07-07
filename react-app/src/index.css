@@ -24,6 +24,7 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
+  padding: 15px;
 }
 
 #root {
@@ -38,12 +39,23 @@ body {
   color: var(--header-text);
   padding: 1rem 2rem;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }
 
 .dash-header__container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.welcome{
+  padding-top: 0px;
+}
+
+.welcome1{
+  padding: 10px;
+  text-align: center;
+  font-size: x-large;
 }
 
 .dash-header__nav {
