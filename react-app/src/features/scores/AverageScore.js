@@ -46,7 +46,7 @@ const AverageScore = () => {
     };
 
     return (
-        <div className=' data-box'>
+        <div className=' data-box average'>
             <div className="average-score">
                 <h2>Your Average Score Today</h2>
                 <div className="speedometer">

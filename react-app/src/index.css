@@ -258,6 +258,9 @@ body {
 .data-box.small {
   flex: 1;
 }
+.data-box.average {
+  margin-right: 20px;
+}
 
 /* Responsive Design */
 @media (max-width: 768px) {

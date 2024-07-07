@@ -5,6 +5,7 @@ import ScoreChart from '../scores/ScoresChart';
 import AverageScore from '../scores/AverageScore';
 import TodayScores from '../scores/TodayScores';
 import UserScoreSearch from '../scores/userScoreSearch';
+import Links from '../scores/Links';
 
 const Dashboard = () => {
     const { isManager, isAdmin } = useAuth();
@@ -25,6 +26,7 @@ const Dashboard = () => {
                     <div className="dash-row">
                             <AverageScore />
                             <ScoreChart />
+                            <Links/>
                     </div>
                 </div>
                 {(isManager || isAdmin) && (
