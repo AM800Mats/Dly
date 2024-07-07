@@ -177,7 +177,7 @@ function getTimeScore() {
     return;
   }
   let score = parseInt(scoreElement.textContent.replace(/,/g, ''));
-  let relScore = convScore(score, 15000, false)
+  let relScore = convScore(score, 50000, false)
   chrome.runtime.sendMessage({ score: score , relScore: relScore, gameID: 'Timeguessr'});
 }
 
