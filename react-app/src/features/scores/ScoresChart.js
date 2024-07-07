@@ -79,6 +79,7 @@ const ScoreChart = () => {
 
     return (
         <div className='data-box large bottom'>
+            <h2>Your Past Performance</h2>
             <div className='score-chart'>
                 <div>
                     <label htmlFor="game">Select Game: </label>
