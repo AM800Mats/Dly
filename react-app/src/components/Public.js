@@ -6,7 +6,7 @@ import { useLoginMutation } from '../features/auth/authApiSlice';
 import { useAddNewUserMutation } from '../features/users/usersApiSlice';
 import usePersist from '../hooks/usePersist';
 
-const USER_REGEX = /^[A-z]{3,20}$/;
+const USER_REGEX = /^[A-z0-9!@#$%]{3,20}$/;
 const PWD_REGEX = /^[A-z0-9!@#$%]{4,12}$/;
 
 const Public = () => {
@@ -85,6 +85,7 @@ const Public = () => {
 
   const onSaveUserClicked = async (e) => {
     e.preventDefault();
+    console.log(canSave, roles.length, validUsernameNewUser, validPasswordNewUser)
     if (canSave) {
       await addNewUser({ username: usernameNewUser, password: passwordNewUser, roles })
       handleSubmitNewUser(e)
