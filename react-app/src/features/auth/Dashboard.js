@@ -10,30 +10,32 @@ const Dashboard = () => {
     const { isManager, isAdmin } = useAuth();
 
     return (
-        <section className="welcome">
-            <div className = "welcome1">
-                <h1>Welcome!</h1>
-            </div>
-            <div className="dash-grid">
-                <div className="dash-row">
-                    <UserScoreSearch/>
-                    <div className="data-box small">
-                        <TodayScores />
+        <body className = "DashboardBody">
+            <section className="welcome">
+                <div className = "welcome1">
+                    <h1>Welcome!</h1>
+                </div>
+                <div className="dash-grid">
+                    <div className="dash-row">
+                        <UserScoreSearch/>
+                        <div className="data-box small">
+                            <TodayScores />
+                        </div>
+                    </div>
+                    <div className="dash-row">
+                            <AverageScore />
+                            <ScoreChart />
                     </div>
                 </div>
-                <div className="dash-row">
-                        <AverageScore />
-                        <ScoreChart />
-                </div>
-            </div>
-            {(isManager || isAdmin) && (
-                <div className="admin-actions">
-                    <h2>Admin Actions</h2>
-                    <p><Link to="/dash/users">View User Settings</Link></p>
-                    <p><Link to="/dash/users/new">Add New User</Link></p>
-                </div>
-            )}
-        </section>
+                {(isManager || isAdmin) && (
+                    <div className="admin-actions">
+                        <h2>Admin Actions</h2>
+                        <p><Link to="/dash/users">View User Settings</Link></p>
+                        <p><Link to="/dash/users/new">Add New User</Link></p>
+                    </div>
+                )}
+            </section>
+        </body>
     );
 };
 
