@@ -40,9 +40,10 @@ body {
 .dash-header {
   background-color: var(--header-bg);
   color: var(--header-text);
-  border-radius: 10px;
-  margin: 15px;
-  margin-bottom: 0px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 
 .dash-header__container {
@@ -52,6 +53,7 @@ body {
 }
 
 .welcome{
+  margin-top: 105;
   padding: 0px;
 }
 
