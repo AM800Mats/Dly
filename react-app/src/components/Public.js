@@ -162,7 +162,7 @@ const Public = () => {
               </label>
             </form>
           </div>
-          <p>or</p>
+          <p className='orSpacing'>or</p>
           <div className="signup">
             <h2>Sign Up</h2>
             <p className={errClass}>{error?.data?.message}</p>
