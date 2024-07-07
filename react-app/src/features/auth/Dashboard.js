@@ -8,12 +8,12 @@ import UserScoreSearch from '../scores/userScoreSearch';
 
 const Dashboard = () => {
     const { isManager, isAdmin } = useAuth();
-
+    const { username, status } = useAuth()
     return (
         <body className = "DashboardBody">
             <section className="welcome">
                 <div className = "welcome1">
-                    <h1>Welcome!</h1>
+                    <h1>Welcome {username}!</h1>
                 </div>
                 <div className="dash-grid">
                     <div className="dash-row">
