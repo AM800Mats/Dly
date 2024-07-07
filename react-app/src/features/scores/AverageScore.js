@@ -48,7 +48,7 @@ const AverageScore = () => {
     return (
         <div className=' data-box'>
             <div className="average-score">
-                <h2>Today's Average Relative Score</h2>
+                <h2>Average Score Today</h2>
                 <div className="speedometer">
                     <svg viewBox="0 -5 200 100" className="speedometer-svg">
                         <path

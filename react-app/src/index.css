@@ -355,6 +355,7 @@ select:hover {
 .score-list {
   list-style-type: none;
   padding: 0;
+  height: 300px;
   overflow-y: auto;
   flex-grow: 1;
 }

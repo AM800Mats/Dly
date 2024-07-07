@@ -62,7 +62,7 @@ const TodayScores = () => {
 
   return (
     <div className="today-scores">
-      <h2>Today's Scores</h2>
+      <h2>Scores Today</h2>
       {todayScores.length === 0 ? (
         <p>No scores recorded today.</p>
       ) : (
