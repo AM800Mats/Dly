@@ -40,7 +40,7 @@ function getCostcoScore() {
     let guessNum = parseInt(checkElement.parentElement.id);
     console.log('Sending message to popup.js:' + guessNum);
     let relScore = convScore(guessNum, 6, true);
-    chrome.runtime.sendMessage({ score: guessNum , relScore: relScore});
+    chrome.runtime.sendMessage({ score: guessNum , relScore: relScore, gameID: 'Costcodle'});
   }
   else {
     let guessNum = -1;
