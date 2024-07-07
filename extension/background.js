@@ -74,7 +74,7 @@ function getFoodguessrScore() {
   for (let i = 0; i < childElements.length; i++) {
     childElements[i].parentNode.removeChild(childElements[i]);
   }
-  let score = parseInt(clonedScoreDiv.textContent.replace(/,/g, ''));
+  let score = parseInt(clonedScoreDiv.textContent.replace(/,|\./g, ''));
   let relScore = convScore(score, 15000, false);
   console.log('Sending message to popup.js');
   chrome.runtime.sendMessage({ score: score , relScore: relScore, gameID: 'Foodguessr'});
@@ -122,7 +122,7 @@ function getMapgameScore() {
     chrome.runtime.sendMessage({ invalid: true});
     return;
   }
-  let score = parseInt(scoreElement.textContent.replace(/,/g, ''));
+  let score = parseInt(scoreElement.textContent.replace(/,|\./g, ''));
   let relScore = convScore(score, 100000, false);
   chrome.runtime.sendMessage({ score: score , relScore: relScore, gameID: 'Mapgame'});
 }
