@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         
         let username = 'anonymous'; // Placeholder for username
 
-        fetch('http://localhost:5000/scores', {
+        fetch('http://localhost:3500/scores', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
