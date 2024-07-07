@@ -156,7 +156,7 @@ body {
 }
 
 /* Chart Styles */
-.average-score, .score-chart {
+.average-score{
   background-color: var(--bg-secondary);
   border-radius: 10px;
   padding: 1.5rem;
@@ -257,9 +257,6 @@ body {
 
 .data-box.small {
   flex: 1;
-}
-.data-box.average {
-  margin-right: 20px;
 }
 
 /* Responsive Design */
