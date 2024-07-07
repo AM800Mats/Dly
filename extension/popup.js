@@ -33,6 +33,24 @@ document.addEventListener('DOMContentLoaded', (event) => {
     changeUserIdButton.style.display = 'none';
   });
 
+  function showTemporaryPopup(message, duration) {
+    let popup = document.createElement("div");
+    popup.textContent = message;
+    popup.style.position = "fixed";
+    popup.style.bottom = "20px";
+    popup.style.left = "50%";
+    popup.style.transform = "translateX(-50%)";
+    popup.style.backgroundColor = "rgba(76, 175, 80, 0.9)";
+    popup.style.color = "white";
+    popup.style.padding = "10px";
+    popup.style.borderRadius = "5px";
+    popup.style.zIndex = "1000";
+    document.body.appendChild(popup);
+  
+    setTimeout(() => {
+      popup.remove();
+    }, duration);
+  }
 
   sendScoreButton.addEventListener('click', () => {
 
@@ -55,9 +73,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
           }),
         })
         .then(response => response.json())
-        .then(data => console.log('Success:', data))
+        .then(data => {
+          console.log('Success:', data);
+          // Show the popup message
+          showTemporaryPopup("Score submitted", 5000); // Show for 2 seconds
+        })
         .catch((error) => {
           console.error('Error:', error);
+          showTemporaryPopup("Something went wrong", 5000);
         });
 
       }
@@ -66,38 +89,40 @@ document.addEventListener('DOMContentLoaded', (event) => {
         console.log("No score saved, try getting the score first.");
       }
     });
+    document.getElementById("sendScore").style.display = 'none';
+    document.getElementById("scoreBox").textContent = '';
+    document.getElementById("relScoreBox").textContent = '';
+    document.getElementById("gameNameBox").textContent = '';
   });
 
   getScoreButton.addEventListener('click', () => {
-    /**
-     * Query the active tab and send a message to the background script to get the score.
-     */
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
       chrome.runtime.sendMessage({tabId: tabs[0].id, action: "getScore"});
     });
-
-    /**
-     * Event listener for the runtime message.
-     * @param {Object} request - The message request object.
-     * @param {Object} sender - The sender object.
-     * @param {Function} sendResponse - The function to send a response.
-     */
+  
     let listener = function(request, sender, sendResponse) {
       if (request.score) {
         request.relScore = parseFloat(request.relScore).toFixed(1); // round relScore to 1 decimal place
         console.log('received score, relscore: ' + request.score + ', ' + request.relScore);
-
-        document.getElementById("score").textContent = 'score: ' + request.score + ', relative score: ' + request.relScore + ', from game:  ' + request.gameID;
-
+  
+        // Update the content of the boxes with the received score, relative score, and game ID
+        document.getElementById("scoreBox").textContent = 'Score: ' + request.score;
+        document.getElementById("relScoreBox").textContent = 'Relative Score: ' + request.relScore;
+        document.getElementById("gameNameBox").textContent = 'Game ID: ' + request.gameID;
+  
         chrome.storage.local.set({ "savedScore": request.score, "savedRelScore": request.relScore, "savedGameID": request.gameID }, function() {
           console.log("Score saved temporarily.");
         });
+        
+        document.getElementById("sendScore").style.display = 'block'; // Assuming the button is hidden by default
 
         chrome.runtime.onMessage.removeListener(listener);
       }
       else if (request.invalid) {
         console.log('invalid score');
-        document.getElementById("score").textContent = 'Couldn\'t get score, make sure you are on the correct page.';
+        document.getElementById("scoreBox").textContent = 'Couldn\'t get score';
+        document.getElementById("relScoreBox").textContent = '';
+        document.getElementById("gameNameBox").textContent = 'Make sure you are on the correct page.';
         chrome.runtime.onMessage.removeListener(listener);
       }
     };

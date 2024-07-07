@@ -1,62 +1,65 @@
 body {
-    width: 350px;
-    height: 100px;
+    width: 500px; /* Adjusted width */
+    height: 300px; /* Adjusted height */
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
-  
-  /* Container styles */
-  #userIdInputSection {
-    background-color: #fff;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    margin: 40px auto;
-  }
-  
-  /* Input and button styles */
-  input[type="text"] {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 80%;
-  }
-  
-  button {
+
+#mainButtons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+button {
     background-color: #4CAF50;
     color: #fff;
-    padding: 10px 20px;
+    padding: 15px 30px; /* Larger button size */
     border: none;
     border-radius: 5px;
     cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #3e8e41;
-  }
-  
-  /* Score section styles */
-  #score {
-    font-size: 24px;
-    font-weight: bold;
-    color: #666;
-    margin: 10px;
-  }
-  
-  /* Button layout */
-  button[id="getScore"], button[id="sendScore"] {
-    margin: 20px;
-  }
-  
-  /* Change User ID button styles */
-  button[id="changeUserId"] {
-    background-color: #ff9800;
-    margin: 20px;
-    float: right;
-  }
-  button[id="saveUserId"]{
-    margin-top: 20px;
-  }
+    font-size: 16px;
+}
+
+#sendScore {
+    background-color: #ff9800; /* Different color for send score button */
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+#scoreDisplay {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+#scoreBox, #relScoreBox, #gameNameBox {
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    width: 100px; /* Smaller boxes for scores */
+    text-align: center;
+}
+
+#gameNameBox {
+    grid-column: span 2; /* Make the game name box wider */
+}
+
+#userIdSection {
+    align-self: flex-end;
+}
+
+#userIdInputSection, #changeUserId, #userIdPrompt {
+    margin: 10px; /* Adjusted margin */
+}
+
+input[type="text"] {
+    width: calc(100% - 22px); /* Adjust input width */
+}

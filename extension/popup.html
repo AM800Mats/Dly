@@ -6,18 +6,22 @@
   <script src="popup.js"></script>
 </head>
 <body>
-  <div id="userIdInputSection">
-    <input type="text" id="userIdInput" placeholder="Enter User ID">
-    <button id="saveUserId">Save User ID</button>
-  </div>
-  <button id="changeUserId" style="display:none;">Change User ID</button>
-  <div>
+  <div id="mainButtons">
     <button id="getScore">GET SCORE</button>
-    <h3>Detected score:</h3>
-    <div id="score"></div>
+    <button id="sendScore" style="display:none;">SUBMIT SCORE</button>
   </div>
-  <div>
-    <button id="sendScore">SUBMIT SCORE</button>
+  <div id="scoreDisplay">
+    <div id="scoreBox"></div>
+    <div id="relScoreBox"></div>
+    <div id="gameNameBox"></div>
+  </div>
+  <div id="userIdSection">
+    <div id="userIdInputSection" style="display:none;">
+      <input type="text" id="userIdInput" placeholder="Enter User ID">
+      <button id="saveUserId">Save User ID</button>
+    </div>
+    <button id="changeUserId" style="display:none;">Change User ID</button>
+    <p id="userIdPrompt" style="display:none;">Please set your User ID. Log into DailyLe website, User ID can be found on the bottom left of the page.</p>
   </div>
 </body>
 </html>

@@ -1025,3 +1025,13 @@
 20240707	23:28:54	42f07c56-7ba3-49ae-bfc5-0e0cd9fe786b	OPTIONS	/scores	http://localhost:3000
 20240707	23:28:54	e20c7a28-e319-4d8e-9ad8-58fbbcc9feeb	GET	/users	http://localhost:3000
 20240707	23:28:54	a14f76d9-2ff2-4508-89c8-b90ae1cbce84	GET	/scores	http://localhost:3000
+20240708	00:01:00	cfad47eb-2cd6-445f-9a16-516c63a03eda	OPTIONS	/scores	chrome-extension://appklbolfbdaolmbmjglbianfjlmmfbg
+20240708	00:01:00	b4cf302d-654e-4ad5-b97c-d0e73f6a5fef	POST	/scores	chrome-extension://appklbolfbdaolmbmjglbianfjlmmfbg
+20240708	00:01:35	16a93772-6c86-4d67-b3eb-839f1fbcb8ca	OPTIONS	/scores	chrome-extension://appklbolfbdaolmbmjglbianfjlmmfbg
+20240708	00:01:35	06039302-cb80-4de7-8342-c5873489afd1	POST	/scores	chrome-extension://appklbolfbdaolmbmjglbianfjlmmfbg
+20240708	00:05:31	e6b03337-6dbf-4871-b10a-b7759b104e33	OPTIONS	/scores	chrome-extension://appklbolfbdaolmbmjglbianfjlmmfbg
+20240708	00:05:31	2dd7de46-c66d-4570-b0de-f9d477c3e73e	POST	/scores	chrome-extension://appklbolfbdaolmbmjglbianfjlmmfbg
+20240708	00:06:29	948297e8-5ff2-4878-8b05-f13c006eeb46	OPTIONS	/scores	chrome-extension://appklbolfbdaolmbmjglbianfjlmmfbg
+20240708	00:06:29	812debd1-4c35-49ca-bac7-22d85f7bb118	POST	/scores	chrome-extension://appklbolfbdaolmbmjglbianfjlmmfbg
+20240708	00:06:46	c68fbc86-3ef4-41fb-81b2-f7f9388f7853	OPTIONS	/auth/logout	http://localhost:3000
+20240708	00:06:46	b2f7bef1-ed38-4cf1-a1f1-b3f39fa89f42	POST	/auth/logout	http://localhost:3000
