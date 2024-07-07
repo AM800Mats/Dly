@@ -6,17 +6,18 @@
   <script src="popup.js"></script>
 </head>
 <body>
+  <div id="userIdInputSection">
+    <input type="text" id="userIdInput" placeholder="Enter User ID">
+    <button id="saveUserId">Save User ID</button>
+  </div>
+  <button id="changeUserId" style="display:none;">Change User ID</button>
   <div>
-    <button id="getScoreFromPage">GET SCORE</button>
+    <button id="getScore">GET SCORE</button>
     <h3>Detected score:</h3>
     <div id="score"></div>
   </div>
   <div>
-    <button id="sendScoreToServer">SUBMIT SCORE</button>
-  </div>
-  <div>
-    <button id="loginPageButton">Login</button>
-    <script src="popup.js"></script>
+    <button id="sendScore">SUBMIT SCORE</button>
   </div>
 </body>
 </html>

@@ -102,3 +102,4 @@
 20240702	16:53:50	8b3885b4-2816-4e79-be1f-e5d104713c81	TypeError: Cannot read properties of null (reading 'username')	GET	/notes	undefined
 20240702	16:54:05	a758b964-a2e2-4710-af63-58d80aeac086	TypeError: Cannot read properties of null (reading 'username')	GET	/notes	undefined
 20240702	17:56:47	5431aa60-7976-4e69-9c5a-37f8565b0420	TypeError: Class constructor ObjectId cannot be invoked without 'new'	POST	/scores	undefined
+20240707	21:02:06	0e323d5d-a145-40af-add0-34c6d8bf35bc	BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer	POST	/scores	undefined

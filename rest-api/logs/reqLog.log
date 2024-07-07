@@ -972,3 +972,12 @@
 20240706	12:40:47	3e2ed938-5e98-4892-be40-b62f6bb5c8c0	OPTIONS	/scores	http://localhost:3000
 20240706	12:40:47	b4693edd-4d99-43b2-b466-2ec403e09226	GET	/users	http://localhost:3000
 20240706	12:40:47	d74e3986-1732-44ee-8ab2-d5ada362627d	GET	/scores	http://localhost:3000
+20240707	21:02:06	e19fa532-2d1a-47f9-aae8-61624e27ebbf	OPTIONS	/scores	chrome-extension://appklbolfbdaolmbmjglbianfjlmmfbg
+20240707	21:02:06	318dc31f-ec79-4544-99e6-b6e496bf7127	POST	/scores	chrome-extension://appklbolfbdaolmbmjglbianfjlmmfbg
+20240707	21:03:50	78f0569a-45a1-483b-8da4-dfd1e28ecafc	OPTIONS	/scores	chrome-extension://appklbolfbdaolmbmjglbianfjlmmfbg
+20240707	21:03:50	fb2a2414-ca3b-4dbc-9cf3-e812b60837d3	POST	/scores	chrome-extension://appklbolfbdaolmbmjglbianfjlmmfbg
+20240707	21:04:36	ce21e5e7-087f-4ad9-a7e3-969adc3223e7	GET	/auth/refresh	http://localhost:3000
+20240707	21:04:36	31718035-ddec-47b0-96d0-7172ad964d74	OPTIONS	/users	http://localhost:3000
+20240707	21:04:36	36632c03-2b8a-4bd6-b5ff-bc9e21737bc8	OPTIONS	/scores	http://localhost:3000
+20240707	21:04:36	a752a502-7c9f-46f1-a9f0-2607b5706f88	GET	/users	http://localhost:3000
+20240707	21:04:36	b4d1612e-7e2b-4db7-8380-828131845464	GET	/scores	http://localhost:3000

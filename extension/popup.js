@@ -2,30 +2,45 @@
  * Event listener for the DOMContentLoaded event.
  * @param {Event} event - The DOMContentLoaded event object.
  */
-document.addEventListener('DOMContentLoaded', (event) => {  
-  let getScoreButton = document.getElementById('getScoreFromPage');
-  let sendScoreButton = document.getElementById('sendScoreToServer');
-  let loginPageButton = document.getElementById('loginPageButton');
+document.addEventListener('DOMContentLoaded', (event) => {
+  let userIdInputSection = document.getElementById('userIdInputSection');
+  let userIdInput = document.getElementById('userIdInput');
+  let saveUserIdButton = document.getElementById('saveUserId');
+  let changeUserIdButton = document.getElementById('changeUserId');
+  let sendScoreButton = document.getElementById('sendScore');
+  let getScoreButton = document.getElementById('getScore');
 
-  // Check if the loginPageButton already has the flag indicating the listener is added
-  if (!loginPageButton.hasAttribute('data-listener-added')) {
-    loginPageButton.addEventListener('click', function() {
-      chrome.tabs.create({url: 'login.html'});
+  // Load and display the current user_id if it exists
+  chrome.storage.local.get(["userId"], function(result) {
+    if (result.userId) {
+      userIdInputSection.style.display = 'none';
+      changeUserIdButton.style.display = 'block';
+      userIdInput.value = result.userId; // Optional: Display the current ID in the input field
+    }
+  });
+
+  saveUserIdButton.addEventListener('click', function() {
+    let userId = userIdInput.value;
+    chrome.storage.local.set({userId: userId}, function() {
+      console.log('UserID saved');
+      userIdInputSection.style.display = 'none';
+      changeUserIdButton.style.display = 'block';
     });
-    // Set a flag to indicate the listener has been added
-    loginPageButton.setAttribute('data-listener-added', 'true');
-  }
+  });
+
+  changeUserIdButton.addEventListener('click', function() {
+    userIdInputSection.style.display = 'block';
+    changeUserIdButton.style.display = 'none';
+  });
 
 
   sendScoreButton.addEventListener('click', () => {
 
-    chrome.storage.local.get(["savedScore", "savedRelScore", "savedGameID"], function(result) {
+    chrome.storage.local.get(["savedScore", "savedRelScore", "savedGameID", "userId"], function(result) {
 
       if (result.savedScore && result.savedRelScore && result.savedGameID) {
 
-        console.log("Sending score to server:", result.savedScore, result.savedRelScore, result.savedGameID);
-        
-        let username = 'anonymous'; // Placeholder for username
+        console.log("Sending score to server:", result.userId, result.savedScore, result.savedRelScore, result.savedGameID);
 
         fetch('http://localhost:3500/scores', {
           method: 'POST',
@@ -33,7 +48,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            user: username,
+            user: result.userId,
             game: result.savedGameID,
             absolute_score: result.savedScore,
             relative_score: result.savedRelScore,
