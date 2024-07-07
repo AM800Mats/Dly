@@ -105,7 +105,7 @@ const EditUserForm = ({ user }) => {
         <>
             <p className={errClass}>{errContent}</p>
 
-            <form className="form" onSubmit={e => e.preventDefault()}>
+            <form className="form edit-user" onSubmit={e => e.preventDefault()}>
                 <div className="form__title-row">
                     <h2>Edit User</h2>
                     <div className="form__action-buttons">
