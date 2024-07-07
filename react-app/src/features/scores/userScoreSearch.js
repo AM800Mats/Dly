@@ -104,9 +104,6 @@ const UserScoreSearch = () => {
     return getColorAtPosition(colors, relativeScore);
   };
 
-    if (!isUsersSuccess || !isScoresSuccess) {
-        return <div>Loading...</div>;
-    }
 
     return (
         <div className='data-box large top'>
@@ -134,9 +131,9 @@ const UserScoreSearch = () => {
                 <div className='score-comparisson'>
                     {selectedUser && (
                         <div>
-                            <h2>{selectedUser}'s Today's Scores</h2>
+                            <h2>{selectedUser}'s Scores Today</h2>
                             <div className="average-score">
-                                <h2>Today's Average Relative Score</h2>
+                                <h2>Average Score Today</h2>
                                 <div className="speedometer">
                                     <svg viewBox="0 -5 200 100" className="speedometer-svg">
                                         <path
@@ -174,26 +171,26 @@ const UserScoreSearch = () => {
                     {todayScores.length === 0 ? (
                     <p>No scores recorded today.</p>
                     ) : (
-                                 <ul className="score-list">
-                    {todayScores.map((score) => (
-                        <li key={score.id} className="score-item">
+                    <ul className="score-list">
+                        {todayScores.map((score) => (
+                            <li key={score.id} className="score-item">
                                   <div className="score-info">
-                    <span className="game-name">{score.game || 'Unknown Game'}</span>
-                    <span className="absolute-score">Score: {score.absolute_score}</span>
-                    <span className="relative-score">Relative: {score.relative_score}%</span>
+                                 <span className="game-name">{score.game || 'Unknown Game'}</span>
+                         <span className="absolute-score">Score: {score.absolute_score}</span>
+                            <span className="relative-score">Relative: {score.relative_score}%</span>
                                   </div>
                                   <div className="score-bar-container">
-                    <div
-                      className="score-bar"
-                      style={{
-                        width: `${score.relative_score}%`,
-                        backgroundColor: getBarColor(score.relative_score)
-                      }}
-                    />
-                    </div>
-                     </li>
-                    ))}
-                    </ul>
+                                <div
+                                className="score-bar"
+                                style={{
+                                    width: `${score.relative_score}%`,
+                                    backgroundColor: getBarColor(score.relative_score)
+                                }}
+                                />
+                                </div>
+                                </li>
+                                ))}
+                         </ul>
                     )}
                 </div>
             </div>

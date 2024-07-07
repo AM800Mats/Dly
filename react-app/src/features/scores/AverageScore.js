@@ -8,7 +8,7 @@ const AverageScore = () => {
     const { username } = useAuth();
     const userId = useSelector(state => selectUserIdByUsername(state, username));
     const allScores = useSelector(selectAllScores);
-
+    
     const averageScore = useMemo(() => {
         const today = new Date();
         today.setHours(0, 0, 0, 0);
