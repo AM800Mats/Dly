@@ -232,6 +232,13 @@ body {
   margin-bottom: 20px;
 }
 
+.links-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
 .data-box {
   background-color: var(--bg-secondary);
   border-radius: 10px;

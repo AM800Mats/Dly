@@ -1,9 +1,22 @@
-import React from 'react'
+import React from 'react';
 
 const Links = () => {
   return (
-    <div className='data-box large bottom'>Links</div>
-  )
-}
+      <div>
+        <div className='data-box large bottom'>
+          <div className='links-box'>
+            <div>Game Links</div>
+            <a href={`https://costcodle.com/`} target='_blank' rel='noopener noreferrer'>Costcodle</a>
+            <a href={`https://timeguessr.com/`} target='_blank' rel='noopener noreferrer'>Timeguessr</a>
+            <a href={`https://travle.earth/`} target='_blank' rel='noopener noreferrer'>Travle</a>
+            <a href={`https://www.foodguessr.com/`} target='_blank' rel='noopener noreferrer'>Foodguessr</a>
+            <a href={`https://mapgame.net/`} target='_blank' rel='noopener noreferrer'>Mapgame</a>
+            <a href={`https://worldle.teuteuf.fr/`} target='_blank' rel='noopener noreferrer'>Worldle</a>
+            <a href={`https://globle-game.com/game`} target='_blank' rel='noopener noreferrer'>Globle</a>
+            </div>
+          </div>
+      </div>
+  );
+};
 
-export default Links
+export default Links;

@@ -1,55 +1,58 @@
 body {
-    width: 500px; /* Adjusted width */
-    height: 300px; /* Adjusted height */
+    width: 300px;
+    height: auto;
+    min-height: 200px;
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding: 20px;
 }
 
 #mainButtons {
     display: flex;
     justify-content: center;
     gap: 20px;
+    margin-bottom: 20px;
 }
 
 button {
     background-color: #4CAF50;
     color: #fff;
-    padding: 15px 30px; /* Larger button size */
+    padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 #sendScore {
-    background-color: #ff9800; /* Different color for send score button */
+    background-color: #36a4ff;
 }
 
 button:hover {
     opacity: 0.8;
 }
 
-#scoreDisplay {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
-
-#scoreBox, #relScoreBox, #gameNameBox {
+#gameInfoDisplay {
     background-color: #fff;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    width: 100px; /* Smaller boxes for scores */
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
     text-align: center;
 }
 
-#gameNameBox {
-    grid-column: span 2; /* Make the game name box wider */
+#gameName {
+    margin: 0 0 10px 0;
+    color: #333;
+}
+
+#scoreInfo {
+    font-size: 18px;
+    font-weight: bold;
+    color: #4CAF50;
 }
 
 #userIdSection {
@@ -57,9 +60,86 @@ button:hover {
 }
 
 #userIdInputSection, #changeUserId, #userIdPrompt {
-    margin: 10px; /* Adjusted margin */
+    margin: 10px 0;
+    background-color: #ff9900;
 }
 
 input[type="text"] {
-    width: calc(100% - 22px); /* Adjust input width */
+    width: calc(100% - 22px);
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+@keyframes package-up {
+    0% { transform: scale(1) rotateX(0deg); }
+    50% { transform: scale(0.8) rotateX(60deg); }
+    100% { transform: scale(0) rotateX(90deg); }
+}
+
+@keyframes send-away {
+    0% { transform: translate(0, 0) scale(0) rotateX(90deg); }
+    50% { transform: translate(100px, -50px) scale(0.5) rotateX(45deg); }
+    100% { transform: translate(200px, -100px) scale(0) rotateX(0deg); }
+}
+
+.packaging {
+    animation: package-up 0.5s forwards;
+}
+
+.sending {
+    animation: send-away 1s forwards;
+}
+
+#packageWrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+    perspective: 1000px;
+}
+
+#packageWrapper.visible {
+    opacity: 1;
+}
+
+#package {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+#packageTop {
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    background-color: #8B4513;
+    top: 0;
+    transform: rotateX(-90deg) translateZ(10px);
+}
+
+#packageBottom {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #D2691E;
+    transform: translateZ(-10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: white;
+    font-size: 12px;
+}
+
+#packageBottom::after {
+    content: "SCORE";
+    transform: rotateX(180deg);
 }

@@ -297,6 +297,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       });
       break;
     default:
+      chrome.runtime.sendMessage({ invalid: true});
       console.log('No matching scripts to get score for this URL: ' + tab.url);
     }
   });
