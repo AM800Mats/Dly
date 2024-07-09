@@ -5,7 +5,7 @@ const Links = () => {
       <div>
         <div className='data-box large bottom'>
           <div className='links-box'>
-            <div>Game Links</div>
+            <h1>Game Links</h1>
             <a href={`https://costcodle.com/`} target='_blank' rel='noopener noreferrer'>Costcodle</a>
             <a href={`https://timeguessr.com/`} target='_blank' rel='noopener noreferrer'>Timeguessr</a>
             <a href={`https://travle.earth/`} target='_blank' rel='noopener noreferrer'>Travle</a>

@@ -260,6 +260,7 @@ body {
 .data-box.large.bottom {
   flex: 1;
   margin-left: 20px;
+  min-width: 25vw;
 }
 
 .data-box.small {
@@ -317,6 +318,7 @@ select:hover {
 
 .dash-container > * {
   animation: fadeIn 0.5s ease-out;
+  height: 920px;
 }
 
 .dash-header {
@@ -472,4 +474,9 @@ select:hover {
 
 .edit-user{
   margin-top: 120px;
+}
+
+a{
+  color: black;
+
 }
